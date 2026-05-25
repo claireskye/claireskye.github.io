@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLAIRESKYE</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-color: #030303;
+        --text-main: #00ffff;
+        --text-accent: #ff00ff;
+        --border-color: #00ffff;
+        --glow: 0 0 8px rgba(0, 255, 255, 0.6);
+        --font-stack: "Share Tech Mono", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        font-family: var(--font-stack);
+        line-height: 1.6;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem 1rem;
+        position: relative;
+      }
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -2;
+        background-image: url('data:image/svg+xml;utf8,<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="40" r="1" fill="%23fff" opacity="0.8"/><circle cx="120" cy="180" r="1.5" fill="%2300ffff" opacity="0.6"/><circle cx="250" cy="80" r="0.8" fill="%23fff" opacity="0.9"/><circle cx="190" cy="250" r="1.2" fill="%23ff00ff" opacity="0.5"/></svg>');
+        background-repeat: repeat;
+        animation: twinkle 6s infinite alternate;
+      }
+      .scanlines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(
+          rgba(18, 16, 16, 0) 50%,
+          rgba(0, 0, 0, 0.25) 50%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+        z-index: 100;
+        opacity: 0.4;
+      }
+
+      @keyframes twinkle {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .container {
+        width: 100%;
+        max-width: 500px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      header {
+        text-align: center;
+        border: 1px solid var(--border-color);
+        padding: 2rem;
+        background: rgba(0, 0, 0, 0.7);
+        box-shadow: var(--glow);
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 1rem auto;
+        border: 2px solid var(--text-accent);
+        border-radius: 5px; /* Square for that retro look */
+        background: url("img/passiflora.png") no-repeat center center;
+        background-size: cover;
+        box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+        user-drag: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+      }
+
+      .bio {
+        font-size: 0.9rem;
+        color: #aaa;
+      }
+      .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px dashed var(--text-accent);
+        padding-bottom: 0.5rem;
+        color: var(--text-accent);
+        text-transform: uppercase;
+      }
+
+      .link-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+        text-decoration: none;
+        color: var(--text-main);
+        border: 1px solid var(--border-color);
+        background: rgba(0, 255, 255, 0.05);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        overflow: hidden;
+        user-drag: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+      .btn:hover {
+        background: var(--text-main);
+        color: var(--bg-color);
+        box-shadow: var(--glow);
+        font-weight: bold;
+      }
+
+      .btn::before {
+        content: ">";
+        position: absolute;
+        left: 15px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .btn:hover::before {
+        opacity: 1;
+      }
+      footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #666;
+        margin-top: 2rem;
+      }
+
+      .status-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: #00ff00;
+        border-radius: 50%;
+        margin-right: 5px;
+        box-shadow: 0 0 5px #00ff00;
+      }
+
+      html,
+      body {
+        cursor:
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges"><rect x="2" y="1" width="12" height="14" fill="%23030303"/><rect x="1" y="3" width="14" height="6" fill="%23030303"/><rect x="0" y="8" width="4" height="6" fill="%23030303"/><path d="M2 0h2v1h-2z M12 0h2v1h-2z M1 1h1v2h-1z M14 1h1v2h-1z M4 1h8v1h-8z M0 3h1v4h-1z M15 3h1v4h-1z M1 7h1v1h-1z M14 7h1v1h-1z M2 8h1v1h-1z M13 8h1v1h-1z M3 8h10v1h-10z M0 9h2v1h-2z M12 9h1v3h-1z M0 10h1v3h-1z M1 13h3v1h-3z M11 13h3v1h-3z M4 14h2v1h-2z M10 14h2v1h-2z M3 9h1v4h-1z" fill="%23ff00ff"/><rect x="4" y="4" width="2" height="2" fill="%2300ffff"/><rect x="10" y="4" width="2" height="2" fill="%2300ffff"/><rect x="7" y="6" width="2" height="1" fill="%2300ffff"/><rect x="7" y="10" width="2" height="2" fill="%23ff00ff"/></svg>')
+            2 0,
+          auto !important;
+      }
+
+      a,
+      button,
+      input[type="button"],
+      input[type="submit"],
+      .btn {
+        cursor:
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges"><rect x="2" y="1" width="12" height="14" fill="%23030303"/><rect x="1" y="3" width="14" height="6" fill="%23030303"/><rect x="0" y="8" width="4" height="6" fill="%23030303"/><path d="M2 0h2v1h-2z M12 0h2v1h-2z M1 1h1v2h-1z M14 1h1v2h-1z M4 1h8v1h-8z M0 3h1v4h-1z M15 3h1v4h-1z M1 7h1v1h-1z M14 7h1v1h-1z M2 8h1v1h-1z M13 8h1v1h-1z M3 8h10v1h-10z M0 9h2v1h-2z M12 9h1v3h-1z M0 10h1v3h-1z M1 13h3v1h-3z M11 13h3v1h-3z M4 14h2v1h-2z M10 14h2v1h-2z M3 9h1v4h-1z" fill="%2300ffff"/><rect x="4" y="4" width="2" height="2" fill="%23ff00ff"/><rect x="10" y="4" width="2" height="2" fill="%23ff00ff"/><rect x="7" y="6" width="2" height="1" fill="%23ff00ff"/><rect x="7" y="10" width="2" height="2" fill="%2300ffff"/></svg>')
+            2 0,
+          pointer !important;
+      }
+
+      html:active,
+      html:active a,
+      html:active button,
+      html:active .btn {
+        cursor:
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges"><rect x="2" y="1" width="12" height="14" fill="%23030303"/><rect x="1" y="3" width="14" height="6" fill="%23030303"/><rect x="0" y="8" width="4" height="6" fill="%23030303"/><path d="M2 0h2v1h-2z M12 0h2v1h-2z M1 1h1v2h-1z M14 1h1v2h-1z M4 1h8v1h-8z M0 3h1v4h-1z M15 3h1v4h-1z M1 7h1v1h-1z M14 7h1v1h-1z M2 8h1v1h-1z M13 8h1v1h-1z M3 8h10v1h-10z M0 9h2v1h-2z M12 9h1v3h-1z M0 10h1v3h-1z M1 13h3v1h-3z M11 13h3v1h-3z M4 14h2v1h-2z M10 14h2v1h-2z M3 9h1v4h-1z" fill="%2300ff00"/><rect x="4" y="5" width="2" height="1" fill="%2300ffff"/><rect x="10" y="5" width="2" height="1" fill="%2300ffff"/><rect x="7" y="6" width="2" height="1" fill="%2300ffff"/><rect x="7" y="10" width="2" height="2" fill="%23ff00ff"/></svg>')
+            2 0,
+          pointer !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+    <div class="scanlines"></div>
+
+    <div class="container">
+      <header>
+        <div class="avatar"></div>
+        <h1>CLAIRESKYE</h1>
+        <p class="bio">Girl on the internet</p>
+      </header>
+
+      <section>
+        <h2 class="section-title">:: My stuff</h2>
+        <div class="link-grid">
+          <a
+            href="https://discordapp.com/users/706593546291118190"
+            class="btn"
+            target="_blank"
+            >Discord</a
+          >
+          <a href="https://github.com/claireskye" class="btn" target="_blank"
+            >GitHub</a
+          >
+          <a href="https://twitch.tv/claireskyee" class="btn" target="_blank"
+            >Twitch</a
+          >
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">:: Projects</h2>
+        <div class="link-grid">
+          <a href="#" class="btn" target="_blank"
+            >Showcase SRS[avaliable soon]</a
+          >
+        </div>
+      </section>
+
+      <footer>
+        <p>
+          <span class="status-dot"></span>Copyright (c) 2026 CLAIRESKYE. All
+          Rights Reserved.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
